@@ -31,7 +31,7 @@
     <link rel="stylesheet" type="text/css" href="NikeShop/css/util.css">
     <link rel="stylesheet" type="text/css" href="NikeShop/css/main.css">
     <!--===============================================================================================-->
-
+    <link rel="stylesheet" type="text/css" href="NikeShop/css/StyleFooter.css" />
 
 
     <h3>NikeShop</h3>
@@ -60,11 +60,10 @@
                 <!-- Search product -->
                 <div class=" panel-search w-full p-t-10 p-b-15">
                     <div class="bor8 dis-flex p-l-15">
-                        <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                            <i class="zmdi zmdi-search"></i>
-                        </button>
+                        <button @onclick="(()=>getListProduct())" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                            <i class="zmdi zmdi-search"></i></button>
 
-                        <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
+                        <input @bind="keyword" class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
                     </div>
                 </div>
             </div>
@@ -206,6 +205,71 @@
         </div>
     </div>
 
+<!--Footer-->
 
+    <footer>
+        <div class="container">
+            <!--Nội Dung Phần Giới Thiệu-->
+            <div class="noi-dung about">
+                <h2>Về Chúng Tôi</h2>
+                <p>Lorem ipsumdolor sit...</p>
+                <ul class="social-icon">
+                    <li><a href="https://www.facebook.com/nike/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                    <li><a href="https://twitter.com/Nike" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                    <li><a href="https://www.instagram.com/nike/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                    <li><a href="https://www.youtube.com/c/nike" target="_blank"><i class="fa fa-youtube"></i></a></li>
+                </ul>
+            </div>
 
+            <!--Nội Dung Phần Đường Dẫn-->
+
+            <div class="noi-dung links">
+                <h2>Đường Dẫn</h2>
+                <ul>
+                    <li><a href="#">Trang Chủ</a></li>
+                    <li><a href="#">Về Chúng Tôi</a></li>
+                    <li><a href="#">Thông Tin Liên Lạc</a></li>
+                    <li><a href="#">Dịch Vụ</a></li>
+                    <li><a href="#">Điều Kiện Chính Sách</a></li>
+                </ul>
+            </div>
+
+            <!--Nội Dung Phần Liên Hệ-->
+
+            <div class="noi-dung contact">
+                <h2>Thông Tin Liên Hệ</h2>
+                <ul class="info">
+                    <li>
+                        <span><i class="fa fa-map-marker"></i></span>
+                        <span>
+                            Số 425, Đường Mạc Cửu<br />
+                            Phường Vĩnh Thanh, Thành Phố Rạch Giá<br />
+                            Việt Nam
+                        </span>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-phone"></i></span>
+                        <p>
+                            <a href="#">+84 974 586 301</a>
+                            <br />
+                            <a href="#">+84 845 672 719</a>
+                        </p>
+                    </li>
+                    <li>
+                        <span><i class="fa fa-envelope"></i></span>
+                        <p><a href="#">pkdinh.th113@kgc.edu.vn</a></p>
+                    </li>
+                    <li>
+                        <form class="form">
+                            <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+                            <button type="button" class="btn btn--primary  uppercase">Gửi</button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <p><i class="far fa-copyright"></i> 2021 CopyRight: NikeShop (Phạm Kiên Định) </p>
+        </div>
+    </footer>
 
