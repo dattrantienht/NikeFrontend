@@ -1,200 +1,227 @@
 ﻿@page "/shop"
 @layout ShopLayout
+<!--===============================================================================================-->
+<link rel="icon" type="image/png" href="NikeShop/images/icons/favicon.png" />
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/fonts/iconic/css/material-design-iconic-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/fonts/linearicons-v1.0.0/icon-font.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/animsition/css/animsition.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/daterangepicker/daterangepicker.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/slick/slick.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/MagnificPopup/magnific-popup.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/css/util.css">
+<link rel="stylesheet" type="text/css" href="NikeShop/css/main.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="NikeShop/css/StyleFooter.css" />
+<link rel="stylesheet" type="text/css" href="NikeShop/css/StyleSlide.css" />
 
-    <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="NikeShop/images/icons/favicon.png" />
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/bootstrap/css/bootstrap.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/fonts/iconic/css/material-design-iconic-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/fonts/linearicons-v1.0.0/icon-font.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/animate/animate.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/css-hamburgers/hamburgers.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/animsition/css/animsition.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/select2/select2.min.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/daterangepicker/daterangepicker.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/slick/slick.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/MagnificPopup/magnific-popup.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/vendor/perfect-scrollbar/perfect-scrollbar.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/css/util.css">
-    <link rel="stylesheet" type="text/css" href="NikeShop/css/main.css">
-    <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="NikeShop/css/StyleFooter.css" />
+<h3>NikeShop</h3>
+
+<div class="bg0 m-t-23 p-b-140">
+    <div class="container">
+        <div class="flex-w flex-sb-m p-b-52">
+            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                    All Products
+                </button>
+
+                @if (listProductCategory != null)
+                {
+                    foreach (var category in listProductCategory)
+                    {
+                        <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
+                            @category.name
+                        </button>
+                    }
+                }
+
+            </div>
 
 
-    <h3>NikeShop</h3>
-
-    <div class="bg0 m-t-23 p-b-140">
-        <div class="container">
-            <div class="flex-w flex-sb-m p-b-52">
-                <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                    <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
-                        All Products
+            <!-- Search product -->
+            <div class=" panel-search w-full p-t-10 p-b-15">
+                <div class="bor8 dis-flex p-l-15">
+                    <button class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
+                        <i class="zmdi zmdi-search"></i>
                     </button>
 
-                    @if (listProductCategory != null)
-                    {
-                        foreach (var category in listProductCategory)
-                        {
-                            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5">
-                                @category.name
-                            </button>
-                        }
-                    }
-
-                </div>
-
-
-                <!-- Search product -->
-                <div class=" panel-search w-full p-t-10 p-b-15">
-                    <div class="bor8 dis-flex p-l-15">
-                        <button @onclick="(()=>getListProduct())" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
-                            <i class="zmdi zmdi-search"></i></button>
-
-                        <input @bind="keyword" class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
-                    </div>
+                    <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
                 </div>
             </div>
+        </div>
 
-            <div class="row isotope-grid">
+        <!-- Slideshow -->
+        <div class="slideshow">
+            <div class="slideshow-item">
+                <img src="img/air-jordan-1-mid-se-shoes-hHltxp.jpg">
+                <div class="slideshow-item-text">
+                    <h5>Jordan</h5>
+                    <p>bla bla về Jordan...</p>
+                    <button class="buttonSlide">Tìm Hiểu Thêm</button>
+                </div>
+            </div>
+            <div class="slideshow-item">
+                <img src="img/pegasus-trail-3-trail-running-shoes-zzBdpt.jpg">
+                <div class="slideshow-item-text">
+                    <h5>Running</h5>
+                    <p>bla bla về Running...</p>
+                    <button class="buttonSlide">Tìm Hiểu Thêm</button>
+                </div>
+            </div>
+            <div class="slideshow-item">
+                <img src="img/zoom-freak-3-basketball-shoes-B9NrxN.jpg">
+                <div class="slideshow-item-text">
+                    <h5>Basketball</h5>
+                    <p>bla bla về Basketball...</p>
+                    <button class="buttonSlide">Tìm Hiểu Thêm</button>
+                </div>
+            </div>
+        </div>
 
-                @if (listProduct == null)
+        <div class="row isotope-grid">
+
+            @if (listProduct == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+
+                @foreach (var product in listProduct)
                 {
-                    <p><em>Loading...</em></p>
-                }
-                else
-                {
+                    <div class="col-sm-6 col-md-4 col-lg-4 p-b-35 isotope-item women">
+                        <div class="block2">
+                            <div class="block2-pic hov-img0">
+                                <img src="@product.image" alt="IMG-PRODUCT">
 
-                    @foreach (var product in listProduct)
-                    {
-                        <div class="col-sm-6 col-md-4 col-lg-4 p-b-35 isotope-item women">
-                            <div class="block2">
-                                <div class="block2-pic hov-img0">
-                                    <img src="@product.image" alt="IMG-PRODUCT">
+                                <a href="" @onclick="(()=>getProduct(product.id))" data-toggle="modal" data-target="#ProductModal" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                    Quick View
+                                </a>
+                            </div>
 
-                                    <a href="" @onclick="(()=>getProduct(product.id))" data-toggle="modal" data-target="#ProductModal" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                        Quick View
+                            <div class="block2-txt flex-w flex-t p-t-14">
+                                <div class="block2-txt-child1 flex-col-l ">
+                                    <a class="mtext-103 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                        @product.name
                                     </a>
+
+                                    <span class="mtext-104 cl3">
+                                        @product.price.ToString("c")
+                                    </span>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                }
 
-                                <div class="block2-txt flex-w flex-t p-t-14">
-                                    <div class="block2-txt-child1 flex-col-l ">
-                                        <a class="mtext-103 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+            }
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- Modal view product -->
+<div class="modal fade" id="ProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div style=" width: 100%; max-width: 1250px;" class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class=" p-t-20 p-b-10">
+
+
+                <div class="container">
+                    <div class="bg0 p-t-30 p-b-30 p-lr-15-lg how-pos3-parent">
+                        <button data-dismiss="modal" class="how-pos3 hov3 trans-04">
+                            <img style=" width: 36px; transform: translate(10px, 20px);" src="/NikeShop/images/icons/cancel.png" />
+                        </button>
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-7">
+                                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                                    <div class="wrap-slick3 flex-sb flex-w">
+
+                                        <div class="slick3 gallery-lb">
+                                            <div class="item-slick3">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    @if (product != null)
+                                                    {
+                                                        <img src="@product.image" alt="IMG-PRODUCT">
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 col-lg-5 p-b-30">
+                                <div class="p-r-50 p-t-5 p-lr-0-lg">
+                                    @if (product != null)
+                                    {
+                                        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
                                             @product.name
-                                        </a>
+                                        </h4>
 
-                                        <span class="mtext-104 cl3">
+                                        <span class="mtext-106 cl2">
                                             @product.price.ToString("c")
                                         </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    }
 
-                }
+                                        <p class="stext-102 cl3 p-t-23">
+                                            Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
+                                        </p>
+                                    }
 
-            </div>
+                                    <!--  -->
+                                    <div class="p-t-33">
 
-        </div>
-    </div>
-
-
-    <!-- Modal view product -->
-    <div class="modal fade" id="ProductModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div style=" width: 100%; max-width: 1250px;" class="modal-dialog modal-lg" role="document">
-            <div class="modal-content">
-                <div class=" p-t-20 p-b-10">
+                                        <div class="flex-w flex-r-m p-b-10">
+                                            <div class="size-204 flex-w flex-m respon6-next">
 
 
-                    <div class="container">
-                        <div class="bg0 p-t-30 p-b-30 p-lr-15-lg how-pos3-parent">
-                            <button data-dismiss="modal" class="how-pos3 hov3 trans-04">
-                                <img style=" width: 36px; transform: translate(10px, 20px);" src="/NikeShop/images/icons/cancel.png" />
-                            </button>
-
-                            <div class="row">
-                                <div class="col-md-6 col-lg-7">
-                                    <div class="p-l-25 p-r-30 p-lr-0-lg">
-                                        <div class="wrap-slick3 flex-sb flex-w">
-
-                                            <div class="slick3 gallery-lb">
-                                                <div class="item-slick3">
-                                                    <div class="wrap-pic-w pos-relative">
-                                                        @if (product != null)
-                                                        {
-                                                            <img src="@product.image" alt="IMG-PRODUCT">
-                                                        }
-                                                    </div>
-                                                </div>
+                                                <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
+                                                    Add to cart
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <div class="col-md-6 col-lg-5 p-b-30">
-                                    <div class="p-r-50 p-t-5 p-lr-0-lg">
-                                        @if (product != null)
-                                        {
-                                            <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                                                @product.name
-                                            </h4>
-
-                                            <span class="mtext-106 cl2">
-                                                @product.price.ToString("c")
-                                            </span>
-
-                                            <p class="stext-102 cl3 p-t-23">
-                                                Nulla eget sem vitae eros pharetra viverra. Nam vitae luctus ligula. Mauris consequat ornare feugiat.
-                                            </p>
-                                        }
-
-                                        <!--  -->
-                                        <div class="p-t-33">
-
-                                            <div class="flex-w flex-r-m p-b-10">
-                                                <div class="size-204 flex-w flex-m respon6-next">
-
-
-                                                    <button class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-                                                        Add to cart
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!--  -->
-                                        <div class="flex-w flex-m p-l-100 p-t-40 respon7">
-                                            <div class="flex-m bor9 p-r-10 m-r-11">
-                                                <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
-                                                    <i class="zmdi zmdi-favorite"></i>
-                                                </a>
-                                            </div>
-
-                                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
-                                                <i class="fa fa-facebook"></i>
-                                            </a>
-
-                                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
-                                                <i class="fa fa-twitter"></i>
-                                            </a>
-
-                                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
-                                                <i class="fa fa-google-plus"></i>
+                                    <!--  -->
+                                    <div class="flex-w flex-m p-l-100 p-t-40 respon7">
+                                        <div class="flex-m bor9 p-r-10 m-r-11">
+                                            <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 js-addwish-detail tooltip100" data-tooltip="Add to Wishlist">
+                                                <i class="zmdi zmdi-favorite"></i>
                                             </a>
                                         </div>
+
+                                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+
+                                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Twitter">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+
+                                        <a href="#" class="fs-14 cl3 hov-cl1 trans-04 lh-10 p-lr-5 p-tb-2 m-r-8 tooltip100" data-tooltip="Google Plus">
+                                            <i class="fa fa-google-plus"></i>
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -204,72 +231,72 @@
             </div>
         </div>
     </div>
+</div>
 
 <!--Footer-->
 
-    <footer>
-        <div class="container">
-            <!--Nội Dung Phần Giới Thiệu-->
-            <div class="noi-dung about">
-                <h2>Về Chúng Tôi</h2>
-                <p>Lorem ipsumdolor sit...</p>
-                <ul class="social-icon">
-                    <li><a href="https://www.facebook.com/nike/" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                    <li><a href="https://twitter.com/Nike" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                    <li><a href="https://www.instagram.com/nike/" target="_blank"><i class="fa fa-instagram"></i></a></li>
-                    <li><a href="https://www.youtube.com/c/nike" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                </ul>
-            </div>
-
-            <!--Nội Dung Phần Đường Dẫn-->
-
-            <div class="noi-dung links">
-                <h2>Đường Dẫn</h2>
-                <ul>
-                    <li><a href="#">Trang Chủ</a></li>
-                    <li><a href="#">Về Chúng Tôi</a></li>
-                    <li><a href="#">Thông Tin Liên Lạc</a></li>
-                    <li><a href="#">Dịch Vụ</a></li>
-                    <li><a href="#">Điều Kiện Chính Sách</a></li>
-                </ul>
-            </div>
-
-            <!--Nội Dung Phần Liên Hệ-->
-
-            <div class="noi-dung contact">
-                <h2>Thông Tin Liên Hệ</h2>
-                <ul class="info">
-                    <li>
-                        <span><i class="fa fa-map-marker"></i></span>
-                        <span>
-                            Số 425, Đường Mạc Cửu<br />
-                            Phường Vĩnh Thanh, Thành Phố Rạch Giá<br />
-                            Việt Nam
-                        </span>
-                    </li>
-                    <li>
-                        <span><i class="fa fa-phone"></i></span>
-                        <p>
-                            <a href="#">+84 974 586 301</a>
-                            <br />
-                            <a href="#">+84 845 672 719</a>
-                        </p>
-                    </li>
-                    <li>
-                        <span><i class="fa fa-envelope"></i></span>
-                        <p><a href="#">pkdinh.th113@kgc.edu.vn</a></p>
-                    </li>
-                    <li>
-                        <form class="form">
-                            <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
-                            <button type="button" class="btn btn--primary  uppercase">Gửi</button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
+<hr />
+<footer>
+    <div class="container">
+        <!--phần Giới Thiệu-->
+        <div class="noi-dung about">
+            <h2>Về Chúng Tôi</h2>
+            <p>Lorem ipsumdolor sit...</p>
+            <ul class="social-icon">
+                <li><a href="https://www.facebook.com/nike/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                <li><a href="https://www.youtube.com/c/nike" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                <li><a href="https://www.instagram.com/nike/" target="_blank"><i class="fa fa-instagram"></i></a></li>
+                <li><a href="https://twitter.com/Nike" target="_blank"><i class="fa fa-youtube"></i></a></li>
+            </ul>
         </div>
-        <div>
-            <p><i class="far fa-copyright"></i> 2021 CopyRight: NikeShop (Phạm Kiên Định) </p>
+        <!--phần Đường Dẫn-->
+        <div class="noi-dung links">
+            <h2>Đường Dẫn</h2>
+            <ul>
+                <li><a href="#">Trang Chủ</a></li>
+                <li><a href="#">Về Chúng Tôi</a></li>
+                <li><a href="#">Thông Tin Liên Lạc</a></li>
+                <li><a href="#">Dịch Vụ</a></li>
+                <li><a href="#">Điều Kiện Chính Sách</a></li>
+            </ul>
         </div>
-    </footer>
+        <!--phần Liên Hệ-->
+        <div class="noi-dung contact">
+            <h2>Thông Tin Liên Hệ</h2>
+            <ul class="info">
+                <li>
+                    <span><i class="fa fa-map-marker"></i></span>
+                    <span>
+                        Số 425, Đường Mạc Cửu<br />
+                        Phường Vĩnh Thanh, Thành Phố Rạch Giá<br />
+                        Việt Nam
+                    </span>
+                </li>
+                <li>
+                    <span><i class="fa fa-phone"></i></span>
+                    <p>
+                        <a href="#">+84 974 586 301</a>
+                        <br />
+                        <a href="#">+84 845 672 719</a>
+                    </p>
+                </li>
+                <li>
+                    <span><i class="fa fa-envelope"></i></span>
+                    <p><a href="#">pkdinh.th113@kgc.edu.vn</a></p>
+                </li>
+                <li>
+                    <form class="form">
+                        <input type="email" class="form__field" placeholder="Đăng Ký Subscribe Email" />
+                        <button type="button" class="btn btn--primary  uppercase">Gửi</button>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+        <p><i class="far fa-copyright"></i> 2021 CopyRight: NikeShop (Phạm Kiên Định) </p>
+    </div>
+</footer>
+
+
 
