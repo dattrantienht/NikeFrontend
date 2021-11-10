@@ -1,0 +1,53 @@
+﻿@page "/team"
+
+    <AuthorizeView>
+        <Authorized>
+
+            <h3>Team Members</h3>
+
+            @if (string.IsNullOrWhiteSpace(teamMemberApiMessage))
+            {
+                @if (listTeamMember == null)
+                {
+                    <p><em>Loading...</em></p>
+                }
+                else
+                {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Role</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var teamMember in listTeamMember)
+                            {
+                                <tr>
+                                    <td>@teamMember.id</td>
+                                    <td>@teamMember.name</td>
+                                    <td>@teamMember.role</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                }
+            }
+            else
+            {
+                <p>@teamMemberApiMessage</p>
+            }
+
+            <img class="img-fluid" src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MXx8ZGV2ZWxvcGVyJTIwdGVhbXxlbnwwfHwwfHw%3D&ixlib=rb-1.2.1&w=1000&q=80" />
+        </Authorized>
+        <NotAuthorized>
+            <h4><b>Đăng nhập để xem trang này</b></h4>
+        </NotAuthorized>
+    </AuthorizeView>
+
+
+
+
+
+
