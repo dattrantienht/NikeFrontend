@@ -58,5 +58,26 @@ namespace NikeFrontend.Pages
             productResult = await _productService.getProduct(id);
             product = productResult.data;
         }
+
+         //hide/show filter
+        protected String HideFilterButton { set; get; } = "Hide Filter";
+        protected String HideFilterButtonZoomProductCss { set; get; } = "col-lg-10";
+        protected string HideFilterCssClass { get; set; } = null;
+
+        protected void HideFilter()
+        {
+            if (HideFilterButton == "Hide Filter")
+            {
+                HideFilterButton = "Show Filter";
+                HideFilterCssClass = "HideFilter";
+                HideFilterButtonZoomProductCss = "col-lg-12";
+            }
+            else
+            {
+                HideFilterButtonZoomProductCss = "col-lg-10";
+                HideFilterCssClass = null;
+                HideFilterButton = "Hide Filter";
+            }
+        }
     }
 }
