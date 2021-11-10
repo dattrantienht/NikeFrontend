@@ -75,22 +75,22 @@
                             <a href="#">SNKRS</a>
                         </li>
 
-                        <li>
+                        <li >
                             <NavLink class="nav-link" href="team">
                                 <span class="oi oi-people"></span> Team Member
                             </NavLink>
                         </li>
                         <AuthorizeView>
                             <Authorized>
-                                <li>
-                                    <NavLink @onclick="(()=>Logout())" href="">
+                                <li >
+                                    <NavLink  @onclick="(()=>Logout())" href="">
                                         <span class="oi oi-account-logout"></span> Logout
                                     </NavLink>
                                 </li>
                             </Authorized>
                             <NotAuthorized>
                                 <li c>
-                                    <NavLink href="login">
+                                    <NavLink  href="login">
                                         <span class="oi oi-account-login"></span> Login
                                     </NavLink>
                                 </li>
@@ -100,41 +100,41 @@
 
 
                         @*<li class="nav-item px-3">
-                                <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                                    <span class="oi oi-home" aria-hidden="true"></span> Home
-                                </NavLink>
-                            </li>
-                            <li class="nav-item px-3">
-                                <NavLink class="nav-link" href="product">
-                                    <span class="oi oi-cart"></span> Product
-                                </NavLink>
-                            </li>
-                            <li class="nav-item px-3">
-                                <NavLink class="nav-link" href="productcategory">
-                                    <span class="oi oi-spreadsheet"></span> Product Category
-                                </NavLink>
-                            </li>
-                            <li class="nav-item px-3">
-                                <NavLink class="nav-link" href="team">
-                                    <span class="oi oi-people"></span> Team Member
-                                </NavLink>
-                            </li>
-                            <AuthorizeView>
-                                <Authorized>
-                                    <li class="nav-item px-3">
-                                        <NavLink class="nav-link" @onclick="(()=>Logout())" href="">
-                                            <span class="oi oi-account-logout"></span> Logout
-                                        </NavLink>
-                                    </li>
-                                </Authorized>
-                                <NotAuthorized>
-                                    <li class="nav-item px-3">
-                                        <NavLink class="nav-link" href="login">
-                                            <span class="oi oi-account-login"></span> Login
-                                        </NavLink>
-                                    </li>
-                                </NotAuthorized>
-                            </AuthorizeView>*@
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Home
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="product">
+                <span class="oi oi-cart"></span> Product
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="productcategory">
+                <span class="oi oi-spreadsheet"></span> Product Category
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="team">
+                <span class="oi oi-people"></span> Team Member
+            </NavLink>
+        </li>
+        <AuthorizeView>
+            <Authorized>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" @onclick="(()=>Logout())" href="">
+                        <span class="oi oi-account-logout"></span> Logout
+                    </NavLink>
+                </li>
+            </Authorized>
+            <NotAuthorized>
+                <li class="nav-item px-3">
+                    <NavLink class="nav-link" href="login">
+                        <span class="oi oi-account-login"></span> Login
+                    </NavLink>
+                </li>
+            </NotAuthorized>
+        </AuthorizeView>*@
 
 
                     </ul>
@@ -266,16 +266,18 @@
 
 
 
-@code { private bool collapseNavMenu = true;
+@code {
+    private bool collapseNavMenu = true;
 
-            private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 
-            private void ToggleNavMenu()
-            {
-                collapseNavMenu = !collapseNavMenu;
-            }
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
 
-            public void Logout()
-            {
-                ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
-            } }
+    public void Logout()
+    {
+        ((CustomAuthenticationStateProvider)AuthenticationStateProvider).MarkUserAsLoggedOut();
+    }
+}
