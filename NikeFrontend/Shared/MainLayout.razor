@@ -1,6 +1,16 @@
 ﻿@inherits LayoutComponentBase
 @using Blazored.Toast.Configuration
+<div class="header-v4">
+    <Header />
+</div>
 
+<div class="main ">
+
+    <div class="content px-4">
+
+        @Body
+    </div>
+</div>
 <AuthorizeView>
     <Authorized>
         <div class="page">
