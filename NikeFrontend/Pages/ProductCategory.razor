@@ -2,6 +2,20 @@
 
 <h3>Product Category</h3>
 
+<div class="create-form">
+    <EditForm Model="@newProductCategory" OnValidSubmit="(()=>addProductCategory())">
+        <div class="form-group row">
+            <label for="newProductName" class="col-sm-3 col-form-label">Product Category Name</label>
+            <div class="col-sm-9">
+                <input required @bind="newProductCategory.name"  type="text" class="form-control" id="newProductName" placeholder="Product category Name">
+            </div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Add Product Category</button>
+        <button type="reset" class="btn btn-primary"><i class="fas fa-redo"></i> &nbsp;&nbsp; Reset</button>
+    </EditForm>
+</div>
+
 @if (listProductCategory == null)
 {
     <p><em>Loading...</em></p>
