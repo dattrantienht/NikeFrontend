@@ -31,17 +31,5 @@ namespace NikeFrontend.Services
             var result = await client.GetFromJsonAsync<SingleProductCategoryModelRootobject>($"ProductCategories/{id}");
             return await Task.FromResult(result);
         }
-
-        public async Task<HttpResponseMessage> addProductCategory(ProductCategoryModel productCategory)
-        {
-            var token = await _sessionStorageService.GetItemAsync<string>("token");
-            var client = _clientFactory.CreateClient("KSC");
-            if (!string.IsNullOrEmpty(token))
-            {
-                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
-            }
-            var result = await client.PostAsJsonAsync("ProductCategories", productCategory);
-            return await Task.FromResult(result);
-        }
     }
 }
