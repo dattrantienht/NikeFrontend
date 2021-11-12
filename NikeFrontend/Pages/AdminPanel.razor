@@ -1,33 +1,45 @@
 ﻿@page "/admin"
 
 <AuthorizeView Roles="Administrator">
-    <Authorized>
-        <h3><b>Add User</b></h3>
+    <Authorized>      
+        <h3 style="font-weight:bolder; color:midnightblue">THÊM NGƯỜI DÙNG</h3>
+
+        <!--TẠO FORM ĐĂNG KÝ USER-->
         <div class="create-form">
+
             <EditForm Context="form" Model="@newUser" OnValidSubmit="(()=>addUser())">
+
+                <!--USER NAME (tên tài khoản)-->
                 <div class="form-group row">
-                    <label for="newUserName" class="col-sm-2 col-form-label">Username</label>
+                    <label for="newUserName" class="col-sm-2 col-form-label">Tên tài khoản</label>
                     <div class="col-sm-10">
                         <input required @bind="newUser.userName" type="text" class="form-control" id="newUserName" placeholder="Username">
                     </div>
                 </div>
+
+                <!--PASSWORD (mật khẩu)-->
                 <div class="form-group row">
-                    <label for="newUserPass" class="col-sm-2 col-form-label">Password</label>
+                    <label for="newUserPass" class="col-sm-2 col-form-label">Mật khẩu</label>
                     <div class="col-sm-10">
                         <input required @bind="newUser.Password" type="password" autocomplete="new-password" class="form-control" id="newUserPass" placeholder="Password">
                     </div>
                 </div>
+
+                <!--CONFIRM PASSWORD (xác nhận mật khẩu)-->
                 <div class="form-group row">
-                    <label for="newUserConfirmPass" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <label for="newUserConfirmPass" class="col-sm-2 col-form-label">Xác nhận mật khẩu</label>
                     <div class="col-sm-10">
-                        <input required @bind="confirmPassword" type="password" autocomplete="new-password" class="form-control" id="newUserConfirmPass" placeholder="Confirm Password">
+                        <input required @bind="confirmPassword" type="password" autocomplete="new-password" class="form-control" id="newUserConfirmPass" placeholder="Xác nhận lại mật khẩu">
                     </div>
                 </div>
+
+                <!--ROLE (vai trò người đăng ký)-->
                 <div class="form-group row">
-                    <label for="roleOfUser" class="col-sm-2 col-form-label">Role</label>
+                    <label for="roleOfUser" class="col-sm-2 col-form-label">Vai trò</label>
                     <div class="col-sm-10">
+                        <!--chọn vai trò(chức vụ)-->
                         <select required @bind="@newUser.roleId" id="roleOfUser" class="form-control">
-                            <option value="-1" selected>Choose...</option>
+                            <option value="-1" selected>Chọn...</option>
                             @if (listRoleData != null)
                             {
                                 @foreach (var role in listRoleData)
@@ -39,6 +51,8 @@
                         </select>
                     </div>
                 </div>
+
+                <!--ĐỊA CHỈ EMAIL-->
                 <div class="form-group row">
                     <label for="newProductPrice" class="col-sm-2 col-form-label">Email</label>
                     <div class="col-sm-10">
@@ -46,31 +60,32 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="newProductPrice" class="col-sm-2 col-form-label">Name</label>
+                    <label for="newProductPrice" class="col-sm-2 col-form-label">Tên</label>
                     <div class="col-sm-10">
-                        <input @bind="newUser.name" type="text" class="form-control" id="newProductPrice" placeholder="Name">
+                        <input @bind="newUser.name" type="text" class="form-control" id="newProductPrice" placeholder="Tên">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="newProductPrice" class="col-sm-2 col-form-label">Last Name</label>
+                    <label for="newProductPrice" class="col-sm-2 col-form-label">Họ</label>
                     <div class="col-sm-10">
-                        <input @bind="newUser.lastName" type="text" class="form-control" id="newProductPrice" placeholder="Last name">
+                        <input @bind="newUser.lastName" type="text" class="form-control" id="newProductPrice" placeholder="Họ">
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label for="newProductPrice" class="col-sm-2 col-form-label">Phone Number</label>
+                    <label for="newProductPrice" class="col-sm-2 col-form-label">Số điện thoại</label>
                     <div class="col-sm-10">
-                        <input @bind="newUser.phoneNumber" type="tel" class="form-control" id="newProductPrice" placeholder="Phone Number">
+                        <input @bind="newUser.phoneNumber" type="tel" class="form-control" id="newProductPrice" placeholder="Số điện thoại">
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Add User</button>
+                <!--BUTTON (Nút thực thi)-->
+                <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Thêm người dùng</button>
                 <button type="reset" class="btn btn-primary"><i class="fas fa-redo"></i> &nbsp;&nbsp; Reset</button>
             </EditForm>
         </div>
 
-
-        <h3><b>User List</b></h3>
+        <!--USER LIST (danh sách người dùng)-->
+        <h3><b>Danh sách</b></h3>
         @if (listUserData == null)
         {
             <p><em>Loading...</em></p>
@@ -82,14 +97,14 @@
                     <thead class="thead-dark">
                         <tr>
                             <th class="text-left">#</th>
-                            <th>Name</th>
-                            <th>Last Name</th>
+                            <th>Tên</th>
+                            <th>Họ</th>
                             <th>Username</th>
-                            <th>Phone Number</th>
+                            <th>Số điện thoại</th>
                             <th>Email</th>
-                            <th>Role</th>
+                            <th>Vai trò</th>
 
-                            <th class="text-center">Action</th>
+                            <th class="text-center">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -114,7 +129,7 @@
                     </tbody>
                 </table>
             </div>
-            
+
         }
 
 
@@ -128,8 +143,9 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
+                    <!--Thông báo-->
                     <div class="modal-body">
-                        Are you sure you want to delete user @userNameForDelete ?
+                        Bạn có chắc chắn muốn xóa người dùng không? @userNameForDelete ?
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -140,6 +156,6 @@
         </div>
     </Authorized>
     <NotAuthorized>
-        <h4><b>Login with Admin account to view this page</b></h4>
+        <h4><b>Đăng nhập bằng tài khoản <a style="color:darkgoldenrod">Quản Trị Viên</a> để xem trang này</b></h4>
     </NotAuthorized>
 </AuthorizeView>
