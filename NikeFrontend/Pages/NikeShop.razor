@@ -47,7 +47,7 @@
     
     
         
-    <div class="">
+    <div class="container">
         <!--<div class="flex-w flex-l-m filter-tope-group m-tb-10">
             <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
                 All Products
@@ -106,11 +106,21 @@
             </div>
         </div>
 
-        <div class="flex-w flex-sb-m p-b-52 sidebar" style="padding-left: 20px; padding-right: 20px; height: 60px; position: sticky;
-                                                        width: auto; margin-right: 0px; max-width: 100%; -webkit-box-shadow: none; ">
-            <div class="flex-w flex-l-m filter-tope-group m-tb-10">
-                Fast Family Collection (fix sau())
-            </div>
+        <div class="flex-w flex-sb-m p-b-52 sidebar" style="padding-left: 20px; 
+       padding-right: 20px; height: 60px; position: sticky; width: auto; margin-right: 0px;
+       max-width: 100%; -webkit-box-shadow: none; z-index: 2;">
+            @if (listProduct == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                    Fast Family Collection(@listProduct.Count)
+
+                </div>
+            }
+
 
             <div class="flex-w flex-c-m m-tb-10">
                 <div @onclick="HideFilter" class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
@@ -131,9 +141,26 @@
                 <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
 
                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Sort By
+                    <div class="dropdown">
+                        
+                            <button onclick="myFunction()" class="dropbtn">
+                               
+                                    Sort By
+                                
+                                <span class=" dropbtn oi oi-chevron-bottom"></span>
+                            </button>
+                       
 
-                    <span class="oi oi-chevron-bottom"></span>
+                        <div id="myDropdown" class="dropdown-content">
+                            <a @onclick="(()=>getProductFilter(NameCatergory, 1))">Price: High-Low</a>
+                            <a @onclick="(()=>getProductFilter(NameCatergory, 2))">Price: Low-High</a>
+
+                        </div>
+
+                    </div>
+
+
+
                 </div>
             </div>
 
@@ -143,58 +170,33 @@
 
         <div class="row">
             <div class="@HideFilterCssClass col-lg-2">
-                <div id="sidebar" class="@HideFilterCssClass" style=" padding-top: 90px; z-index: 1000; ">
+                <div id="sidebar" class="@HideFilterCssClass" style=" position: sticky;   z-index: 1;   top: 60px;">
                     <div style="overflow: hidden scroll; direction: inherit; box-sizing: border-box !important; position: relative; display: block; width: 200px; height: 351px; ">
                         <h1> Filters</h1>
                         <div class="dis-none panel-filter w-full p-t-10 " style="display:block">
                             <div class="wrap-filter bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
                                 <div class="">
-                                    @*<div class="mtext-102 cl2 p-b-15">
-                                        Sort By
-                                    </div>*@
 
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        
+                                        ProductCategory
+                                    </div>
                                     <ul>
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
+                                        @if (listProductCategory != null)
+                                        {
+                                            foreach (var category in listProductCategory)
+                                            {
+                                                <li class="p-b-6">
+                                                    <a @onclick="(()=>getProductFilter(category.name, 0))"   class="filter-link stext-106 trans-04">
 
-                                                Shoes
-                                            </a>
-                                        </li>
+                                                        @category.name
+                                                    </a>
+                                                </li>
 
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Sports Bras
-                                            </a>
-                                        </li>
+                                               
+                                            }
+                                        }
 
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Tops & T-Shirts
-                                            </a>
-                                        </li>
-
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
-                                                Jackets & Gilets
-                                            </a>
-                                        </li>
-
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Trousers & Tights
-                                            </a>
-                                        </li>
-
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Shorts
-                                            </a>
-                                        </li>
-                                        <li class="p-b-6">
-                                            <a href="#" class="filter-link stext-106 trans-04">
-                                                Accessories & Equipment
-                                            </a>
-                                        </li>
                                     </ul>
                                 </div>
                                 <hr />
@@ -389,44 +391,53 @@
 
                 </div>
             </div>
-            <div class="@HideFilterButtonZoomProductCss">
+            <div class="@HideFilterButtonZoomProductCss" style="padding-left: 20px;">
                 <div class="row isotope-grid">
 
                     @if (listProduct == null)
                     {
-                        <p><em>Loading...</em></p>
+                    <p><em>Loading...</em></p>
                     }
                     else
+                    {@if (listProduct.Count() == 0)
+                        {
+                            
+                            <h1 style=" padding-left: 100px;">
+                                Nothing here!!!
+                            </h1>
+                        }
+
+
+                    @foreach (var product in listProduct)
                     {
 
-                        @foreach (var product in listProduct)
-                        {
-                            <div class="col-sm-6 col-md-4 col-lg-4 p-b-35 isotope-item women">
-                                <div class="block2">
-                                    <div class="block2-pic hov-img0">
-                                        <img src="@product.image" alt="IMG-PRODUCT">
 
-                                        <a href="" @onclick="(()=>getProduct(product.id))" data-toggle="modal" data-target="#ProductModal" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                            Quick View
+                        <div class="col-sm-6 col-md-4 col-lg-4 p-b-35 isotope-item women">
+                            <div class="block2">
+                                <div class="block2-pic hov-img0">
+                                    <img src="@product.image" alt="IMG-PRODUCT">
+
+                                    <a href="" @onclick="(()=>getProduct(product.id))" data-toggle="modal" data-target="#ProductModal" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                        Quick View
+                                    </a>
+                                </div>
+
+                                <div class="block2-txt flex-w flex-t p-t-14">
+                                    <div class="block2-txt-child1 flex-col-l ">
+                                        <a class="mtext-103 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                            @product.name
                                         </a>
-                                    </div>
 
-                                    <div class="block2-txt flex-w flex-t p-t-14">
-                                        <div class="block2-txt-child1 flex-col-l ">
-                                            <a class="mtext-103 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                @product.name
-                                            </a>
-
-                                            <span class="mtext-104 cl3">
-                                                @product.price.ToString("c")
-                                            </span>
-                                        </div>
+                                        <span class="mtext-104 cl3">
+                                            @product.price.ToString("c")
+                                        </span>
                                     </div>
                                 </div>
                             </div>
-                        }
-
+                        </div>
                     }
+
+                }
 
                 </div>
             </div>
@@ -465,7 +476,10 @@
                                                 <div class="wrap-pic-w pos-relative">
                                                     @if (product != null)
                                                     {
+                                                    <div  class="thumbnail">
                                                         <img src="@product.image" alt="IMG-PRODUCT">
+                                                    </div>
+                                                        
                                                     }
                                                 </div>
                                             </div>

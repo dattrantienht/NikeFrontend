@@ -9,6 +9,8 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using System.Linq;
+
 
 namespace NikeFrontend.Pages
 {
@@ -78,6 +80,23 @@ namespace NikeFrontend.Pages
                 HideFilterCssClass = null;
                 HideFilterButton = "Hide Filter";
             }
+        }
+        protected int SortId { set; get; }=0 ;
+        protected string NameCatergory { set; get; } = "";
+        public async Task getProductFilter(string productCategoryName,int sortId)
+        {
+            //sortId = SortId;
+            NameCatergory = productCategoryName;
+            listProductResult = await _productService.getListProduct("");
+            listProduct = listProductResult.data;
+            if(sortId==1)
+            { listProduct = (listProduct.Where(x => x.productCategoryName.Contains(productCategoryName))).OrderByDescending(x => x.price).ToList(); }
+            else if(sortId==2)
+            { listProduct = (listProduct.Where(x => x.productCategoryName.Contains(productCategoryName))).OrderBy(x => x.price).ToList(); }
+           
+            else
+                listProduct = (listProduct.Where(x => x.productCategoryName.Contains(productCategoryName))).ToList();
+
         }
     }
 }
