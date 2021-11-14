@@ -68,16 +68,16 @@ namespace NikeFrontend.Pages
                 {
                     await getListUser();
                     newUser = new UserData();
-                    _toastService.ShowSuccess("New user added");
+                    _toastService.ShowSuccess("Tài khoản mới đã được thêm vào");
                 }
                 else
                 {
-                    _toastService.ShowError("There was an error");
+                    _toastService.ShowError("Xảy ra lỗi!");
                 }
             }
             else
             {
-                _toastService.ShowWarning("Please make sure your password match");
+                _toastService.ShowWarning("Hãy đảm bảo rằng mật khẩu của bạn đã khớp");
             }
         }
 
@@ -88,11 +88,11 @@ namespace NikeFrontend.Pages
             if (response.IsSuccessStatusCode)
             {
                 await getListUser();
-                _toastService.ShowSuccess("User deleted");
+                _toastService.ShowSuccess("Tài khoản đã được xóa");
             }
             else
             {
-                _toastService.ShowError("There was an error");
+                _toastService.ShowError("Xảy ra lỗi!");
             }
         }
     }
