@@ -1,18 +1,18 @@
 ﻿@page "/productcategory"
 
-<h3>Product Category</h3>
+<h3>Danh mục sản phẩm </h3>
 
 <div class="create-form">
     <EditForm Model="@newProductCategory" OnValidSubmit="(()=>addProductCategory())">
         <div class="form-group row">
-            <label for="newProductName" class="col-sm-3 col-form-label">Product Category Name</label>
+            <label for="newProductName" class="col-sm-3 col-form-label">Tên danh mục sản phẩm </label>
             <div class="col-sm-9">
-                <input required @bind="newProductCategory.name"  type="text" class="form-control" id="newProductName" placeholder="Product category Name">
+                <input required @bind="newProductCategory.name" type="text" class="form-control" id="newProductName" placeholder="Product category Name">
             </div>
         </div>
-        
-        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Add Product Category</button>
-        <button type="reset" class="btn btn-primary"><i class="fas fa-redo"></i> &nbsp;&nbsp; Reset</button>
+
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Thêm danh mục sản phẩm </button>
+        <button type="reset" class="btn btn-primary"><i class="fas fa-redo"></i> &nbsp;&nbsp; Trả lại</button>
     </EditForm>
 </div>
 
@@ -28,19 +28,71 @@ else
                 <th>ID</th>
                 <th>Name</th>
                 <th>Create Date</th>
+                <th class="text-center">Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var productCategory in listProductCategory)
             {
-            <tr>
-                <td>@productCategory.id</td>
-                <td>@productCategory.name</td>
-                <td>@DateTime.Parse(productCategory.createDate).ToString("MM/dd/yyyy HH:mm")</td>
-            </tr>
+                <tr>
+                    <td>@productCategory.id</td>
+                    <td>@productCategory.name</td>
+                    <td>@DateTime.Parse(productCategory.createDate).ToString("MM/dd/yyyy HH:mm")</td>
+                    <td class="text-center">
+                        <button type="button" class="btn" @onclick="(()=>getProductCategory(productCategory.id))" data-toggle="modal" data-target="#ModalEditCategory" style="cursor:pointer; color:blue"><i class="fas fa-edit fa-lg"></i></button>
+                        <button type="button" class="btn" @onclick="(()=>passDataForDeleteModalCategory(productCategory.id,productCategory.name))" style="cursor:pointer; color:red" data-toggle="modal" data-target="#ModalDeleteCategory"><i class="fas fa-trash-alt fa-lg"></i></button>
+                    </td>
+                </tr>
             }
         </tbody>
     </table>
 }
 
+<!-- Modal delete product category -->
+<div class="modal fade" id="ModalDeleteCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash-alt fa-lg"></i> &nbsp; Xóa danh mục sản phẩm </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Are you sure you want to delete product category @nameForDeleteCategory ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                <button @onclick="(()=>deleteProductCategory(idForDeleteCategory))" data-dismiss="modal" type="button" class="btn btn-danger">Xóa </button>
+            </div>
+        </div>
+    </div>
+</div>
 
+<!-- Modal edit product -->
+<div class="modal fade" id="ModalEditCategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit fa-lg"></i> &nbsp; Thêm danh mục sản phẩm </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="@editProductCategory">
+                    <div class="form-group row">
+                        <label for="newProductName" class="col-sm-2 col-form-label">Tên danh mục </label>
+                        <div class="col-sm-10">
+                            <input @bind="editProductCategory.name" type="text" class="form-control" id="newProductName" placeholder="Product Name">
+                        </div>
+                    </div>
+                </EditForm>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                <button @onclick="(()=>updateProductCategory())" data-dismiss="modal" type="button" class="btn btn-primary">Lưu </button>
+            </div>
+        </div>
+    </div>
+</div>

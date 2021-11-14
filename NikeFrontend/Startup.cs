@@ -42,7 +42,7 @@ namespace NikeFrontend
             services.AddTransient<TeamMemberService>();
 
             //<---API Service//
-            services.AddTransient<ValidateHeaderHandler>();
+           
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddHttpClient();
             services.AddHttpClient("local", client =>
@@ -54,18 +54,11 @@ namespace NikeFrontend
                 client.BaseAddress = new Uri(Configuration.GetValue<string>("KeyboardSlingerAPI"));
 
             });
-            services.AddHttpClient("KSC_auth", client =>
-            {
-                client.BaseAddress = new Uri(Configuration.GetValue<string>("KeyboardSlingerAPI"));
-
-            })
-                .AddHttpMessageHandler<ValidateHeaderHandler>();
             services.AddHttpClient<IUserService, UserService>(x =>
             {
                 x.BaseAddress = new Uri(Configuration.GetValue<string>("KeyboardSlingerAPI"));
             });
-            
-            
+
             services.AddSingleton<HttpClient>();
         }
 

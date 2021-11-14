@@ -43,5 +43,29 @@ namespace NikeFrontend.Services
             var result = await client.PostAsJsonAsync("ProductCategories", productCategory);
             return await Task.FromResult(result);
         }
+
+        public async Task<HttpResponseMessage> deleteProductCategory(int id)
+        {
+            var token = await _sessionStorageService.GetItemAsync<string>("token");
+            var client = _clientFactory.CreateClient("KSC");
+            if (!string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+            var result = await client.DeleteAsync($"ProductCategories/{id}");
+            return await Task.FromResult(result);
+        }
+
+        public async Task<HttpResponseMessage> editProductCategory(ProductCategoryModel productCategory)
+        {
+            var token = await _sessionStorageService.GetItemAsync<string>("token");
+            var client = _clientFactory.CreateClient("KSC");
+            if (!string.IsNullOrEmpty(token))
+            {
+                client.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", token);
+            }
+            var result = await client.PutAsJsonAsync("ProductCategories", productCategory);
+            return await Task.FromResult(result);
+        }
     }
 }
