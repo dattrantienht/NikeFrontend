@@ -46,6 +46,20 @@
                 </button>
 
                 @if (listProductCategory != null)
+
+<div class="raw bg0 m-t-23 p-b-140">
+    
+    
+        
+    <div class="container">
+        <!--<div class="flex-w flex-l-m filter-tope-group m-tb-10">
+            <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
+                All Products
+            </button>
+
+            @if (listProductCategory != null)
+            {
+                foreach (var category in listProductCategory)
                 {
                     foreach (var category in listProductCategory)
                     {
@@ -106,6 +120,276 @@
         </div>
 
         <div class="row isotope-grid">
+        <div class="flex-w flex-sb-m p-b-52 sidebar" style="padding-left: 20px; 
+       padding-right: 20px; height: 60px; position: sticky; width: auto; margin-right: 0px;
+       max-width: 100%; -webkit-box-shadow: none; z-index: 2;">
+            @if (listProduct == null)
+            {
+                <p><em>Loading...</em></p>
+            }
+            else
+            {
+                <div class="flex-w flex-l-m filter-tope-group m-tb-10">
+                    Fast Family Collection(@listProduct.Count)
+
+                </div>
+            }
+
+
+            <div class="flex-w flex-c-m m-tb-10">
+                <div @onclick="HideFilter" class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
+
+                    <i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                    @HideFilterButton
+                    <svg aria-hidden="true" class="icon-filter-ds" focusable="false" viewBox="0 0 24 24" role="img" width="24px" height="24px" fill="none">
+                        <path stroke="currentColor" stroke-width="1.5" d="M21 8.25H10m-5.25 0H3">
+                        </path>
+                        <path stroke="currentColor" stroke-width="1.5" d="M7.5 6v0a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" clip-rule="evenodd">
+                        </path>
+                        <path stroke="currentColor" stroke-width="1.5" d="M3 15.75h10.75m5 0H21">
+                        </path>
+                        <path stroke="currentColor" stroke-width="1.5" d="M16.5 13.5v0a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5z" clip-rule="evenodd">
+                        </path>
+                    </svg>
+                </div>
+                <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
+
+                    <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+                    <div class="dropdown">
+                        
+                            <button onclick="myFunction()" class="dropbtn">
+                               
+                                    Sort By
+                                
+                                <span class=" dropbtn oi oi-chevron-bottom"></span>
+                            </button>
+                       
+
+                        <div id="myDropdown" class="dropdown-content">
+                            <a @onclick="(()=>getProductFilter(NameCatergory, 1))">Price: High-Low</a>
+                            <a @onclick="(()=>getProductFilter(NameCatergory, 2))">Price: Low-High</a>
+
+                        </div>
+
+                    </div>
+
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row">
+            <div class="@HideFilterCssClass col-lg-2">
+                <div id="sidebar" class="@HideFilterCssClass" style=" position: sticky;   z-index: 1;   top: 60px;">
+                    <div style="overflow: hidden scroll; direction: inherit; box-sizing: border-box !important; position: relative; display: block; width: 200px; height: 351px; ">
+                        <h1> Filters</h1>
+                        <div class="dis-none panel-filter w-full p-t-10 " style="display:block">
+                            <div class="wrap-filter bg6 w-full p-lr-40 p-t-27 p-lr-15-sm">
+                                <div class="">
+
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        
+                                        ProductCategory
+                                    </div>
+                                    <ul>
+                                        @if (listProductCategory != null)
+                                        {
+                                            foreach (var category in listProductCategory)
+                                            {
+                                                <li class="p-b-6">
+                                                    <a @onclick="(()=>getProductFilter(category.name, 0))"   class="filter-link stext-106 trans-04">
+
+                                                        @category.name
+                                                    </a>
+                                                </li>
+
+                                               
+                                            }
+                                        }
+
+                                    </ul>
+                                </div>
+                                <hr />
+                                <div class="filter-col2 p-r-15 p-b-27">
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        Gender
+                                    </div>
+
+                                    <ul>
+                                        <li class="p-b-6">
+                                            <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                                Men
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Woman
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Unisex
+                                            </a>
+                                        </li>
+
+
+                                    </ul>
+                                </div>
+                                <hr />
+                                <div class="filter-col3 p-r-15 p-b-27">
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        Color
+                                    </div>
+
+                                    <ul>
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #222;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Purple
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #4272d7;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04 filter-link-active">
+                                                Black
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #b3b3b3;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Red
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #00ad5f;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Orange
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #fa4251;">
+                                                <i class="zmdi zmdi-circle"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Blue
+                                            </a>
+                                        </li>
+
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+                                                <i class="zmdi zmdi-circle-o"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                White
+                                            </a>
+                                        </li>
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+                                                <i class="zmdi zmdi-circle-o"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Brown
+                                            </a>
+                                        </li>
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+                                                <i class="zmdi zmdi-circle-o"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Green
+                                            </a>
+                                        </li>
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+                                                <i class="zmdi zmdi-circle-o"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Yellow
+                                            </a>
+                                        </li>
+                                        <li class="p-b-6">
+                                            <span class="fs-15 lh-12 m-r-6" style="color: #aaa;">
+                                                <i class="zmdi zmdi-circle-o"></i>
+                                            </span>
+
+                                            <a href="#" class="filter-link stext-106 trans-04">
+                                                Pink
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <hr />
+                                <div class="filter-col4 p-b-27">
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        Brand
+                                    </div>
+
+                                    <div class="flex-w p-t-4 m-r--5">
+                                        <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                            Nike
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="filter-col4 p-b-27">
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        Sports
+                                    </div>
+
+                                    <div class="flex-w p-t-4 m-r--5">
+                                        <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                            Running
+                                        </a>
+                                        <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                            Training & Gym
+                                        </a>
+                                        <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+                                            Althletic
+                                        </a>
+
+                                    </div>
+                                </div>
+                                <hr />
+                                <div class="">
+                                    <div class="mtext-102 cl2 p-b-15">
+                                        Best For
+                                    </div>
+
+                                    <div class="flex-w p-t-4 m-r--5">
+                                        <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+
+                                            Warm Weather
+                                        </a>
+                                        <a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+
 
             @if (listProduct == null)
             {
@@ -143,6 +427,59 @@
 
             }
 
+                </div>
+            </div>
+            <div class="@HideFilterButtonZoomProductCss" style="padding-left: 20px;">
+                <div class="row isotope-grid">
+
+                    @if (listProduct == null)
+                    {
+                    <p><em>Loading...</em></p>
+                    }
+                    else
+                    {@if (listProduct.Count() == 0)
+                        {
+                            
+                            <h1 style=" padding-left: 100px;">
+                                Nothing here!!!
+                            </h1>
+                        }
+
+
+                    @foreach (var product in listProduct)
+                    {
+
+
+                        <div class="col-sm-6 col-md-4 col-lg-4 p-b-35 isotope-item women">
+                            <div class="block2">
+                                <div class="block2-pic hov-img0">
+                                    <img src="@product.image" alt="IMG-PRODUCT">
+
+                                    <a href="" @onclick="(()=>getProduct(product.id))" data-toggle="modal" data-target="#ProductModal" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                        Quick View
+                                    </a>
+                                </div>
+
+                                <div class="block2-txt flex-w flex-t p-t-14">
+                                    <div class="block2-txt-child1 flex-col-l ">
+                                        <a class="mtext-103 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                            @product.name
+                                        </a>
+
+                                        <span class="mtext-104 cl3">
+                                            @product.price.ToString("c")
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                }
+
+                </div>
+            </div>
+
         </div>
 
     </div>
@@ -177,6 +514,29 @@
                                                                 </div> 
                                                         }
                                                     </div>
+
+
+                <div class="container">
+                    <div class="bg0 p-t-30 p-b-30 p-lr-15-lg how-pos3-parent">
+                        <button data-dismiss="modal" class="how-pos3 hov3 trans-04">
+                            <img style=" width: 36px; transform: translate(10px, 20px);" src="/NikeShop/images/icons/cancel.png" />
+                        </button>
+
+                        <div class="row">
+                            <div class="col-md-6 col-lg-7">
+                                <div class="p-l-25 p-r-30 p-lr-0-lg">
+                                    <div class="wrap-slick3 flex-sb flex-w">
+
+                                        <div class="slick3 gallery-lb">
+                                            <div class="item-slick3">
+                                                <div class="wrap-pic-w pos-relative">
+                                                    @if (product != null)
+                                                    {
+                                                    <div  class="thumbnail">
+                                                        <img src="@product.image" alt="IMG-PRODUCT">
+                                                    </div>
+                                                        
+                                                    }
                                                 </div>
                                             </div>
                                         </div>
