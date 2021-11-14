@@ -58,8 +58,7 @@ namespace NikeFrontend
             {
                 x.BaseAddress = new Uri(Configuration.GetValue<string>("KeyboardSlingerAPI"));
             });
-            
-            
+
             services.AddSingleton<HttpClient>();
         }
 
