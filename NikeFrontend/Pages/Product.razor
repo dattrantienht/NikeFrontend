@@ -1,26 +1,34 @@
 ﻿@page "/product"
 
-<h3>Products</h3>
+<h3 style="font-weight:bolder; color:midnightblue">SẢN PHẨM</h3>
 
+<!--TẠO FORM THÊM SẢN PHẨM-->
 <div class="create-form">
     <EditForm Model="@newProduct" OnValidSubmit="@(()=>addProduct())">
+
+        <!--PRODUCT-->
         <div class="form-group row">
-            <label for="newProductName" class="col-sm-2 col-form-label">Product Name</label>
+            <label for="newProductName" class="col-sm-2 col-form-label">Tên sản phẩm</label>
             <div class="col-sm-10">
-                <input required @bind="newProduct.name" type="text" class="form-control" id="newProductName" placeholder="Product Name">
+                <input required @bind="newProduct.name" type="text" class="form-control" id="newProductName" placeholder="Nhập tên sản phẩm">
             </div>
         </div>
+
+        <!--PRICE-->
         <div class="form-group row">
-            <label for="newProductPrice" class="col-sm-2 col-form-label">Price</label>
+            <label for="newProductPrice" class="col-sm-2 col-form-label">Giá tiền</label>
             <div class="col-sm-10">
                 <input required @bind="newProduct.price" type="number" class="form-control" id="newProductPrice" placeholder="Price">
             </div>
         </div>
+
+        <!--PRODUCT CATEGORY-->
         <div class="form-group row">
-            <label for="newCategoryOfProduct" class="col-sm-2 col-form-label">Category</label>
+            <label for="newCategoryOfProduct" class="col-sm-2 col-form-label">Danh mục</label>
             <div class="col-sm-10">
+                <!--chọn danh mục sản phẩm-->
                 <select required @bind="@newProduct.productCategoryId" id="newCategoryOfProduct" class="form-control">
-                    <option value="-1" selected>Choose...</option>
+                    <option value="-1" selected>Chọn...</option>
                     @if (listProductCategory != null)
                     {
                         @foreach (var productCategory in listProductCategory)
@@ -32,18 +40,22 @@
                 </select>
             </div>
         </div>
+
+        <!--HINHANH-->
         <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Image</label>
+            <label class="col-sm-2 col-form-label">Hình ảnh</label>
             <div class="col-sm-10">
                 <InputFile OnChange="@LoadFiles" />
             </div>
         </div>
-        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Add Product</button>
+
+        <!--BUTTON (Nút thực thi)-->
+        <button type="submit" class="btn btn-primary"><i class="fas fa-plus-square"></i> &nbsp;&nbsp; Thêm sản phẩm</button>
         <button type="reset" class="btn btn-primary"><i class="fas fa-redo"></i> &nbsp;&nbsp; Reset</button>
     </EditForm>
 </div>
 
-
+<!--==DANH SÁCH SẢN PHẨM-->
 
 @if (ProductPageRoot == null)
 {
@@ -53,10 +65,11 @@ else
 {
 
     <div class="row">
+        <!--TÌM KIẾM SẢN PHẨM-->
         <div class="col-6">
 
             <div class="input-group mb-3">
-                <input @bind="keyword" type="text" class="form-control" placeholder="Product name" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input @bind="keyword" type="text" class="form-control" placeholder="Tìm sản phẩm" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
                     <button @onclick="(()=>getListProduct())" class="btn btn-outline-secondary" type="button"><i class="fas fa-search"></i></button>
                     <button @onclick="(()=>resetSearch())" class="btn btn-outline-secondary" type="button"><i class="fas fa-redo"></i></button>
@@ -77,6 +90,7 @@ else
         </div>
     </div>
 
+    <!--DANH SÁCH HIỂN THỊ CÁC SẢN PHẨM-->
     @if (ProductPageRoot.succeeded)
     {
         <div class="table-responsive">
@@ -84,28 +98,29 @@ else
                 <thead class="thead-dark">
                     <tr>
                         <th class="text-left">#</th>
-                        <th>Image</th>
-                        <th>Name</th>
-                        <th>Price</th>
-                        <th>Category</th>
-                        <th class="text-center">Action</th>
+                        <th>Hình ảnh</th>
+                        <th>Tên</th>
+                        <th>Giá tiền</th>
+                        <th>Danh mục</th>
+                        <th class="text-center">Hoạt động</th>
                     </tr>
                 </thead>
                 <tbody>
                     @{ int i = 1;}
                     @foreach (var product in listProduct)
                     {
-                        <tr>
-                            <td class="text-left">@i</td>
-                            <td><img style=" width: 70px; height: 70px;" src="@product.image" /></td>
-                            <td>@product.name</td>
-                            <td>@product.price.ToString("c")</td>
-                            <td>@product.productCategoryName</td>
-                            <td class="text-center">
-                                <button type="button" class="btn" @onclick="(()=>getProductForModalEdit(product.id))" data-toggle="modal" data-target="#ModalEdit" style="cursor:pointer; color:blue"><i class="fas fa-edit fa-lg"></i></button>
-                                <button type="button" class="btn" @onclick="(()=>passDataForDeleteModal(product.id,product.name))" style="cursor:pointer; color:red" data-toggle="modal" data-target="#ModalDelete"><i class="fas fa-trash-alt fa-lg"></i></button>
-                            </td>
-                        </tr>
+                    <tr>
+                        <td class="text-left">@i</td>
+                        <td><img style=" width: 70px; height: 70px;" src="@product.image" /></td>
+                        <td>@product.name</td>
+                        <td>@product.price.ToString("c")</td>
+                        <td>@product.productCategoryName</td>
+                        <!--Nút sửa xóa-->
+                        <td class="text-center">
+                            <button type="button" class="btn" @onclick="(()=>getProductForModalEdit(product.id))" data-toggle="modal" data-target="#ModalEdit" style="cursor:pointer; color:blue"><i class="fas fa-edit fa-lg"></i></button>
+                            <button type="button" class="btn" @onclick="(()=>passDataForDeleteModal(product.id,product.name))" style="cursor:pointer; color:red" data-toggle="modal" data-target="#ModalDelete"><i class="fas fa-trash-alt fa-lg"></i></button>
+                        </td>
+                    </tr>
                         i++;
                     }
 
@@ -114,7 +129,7 @@ else
                 </tbody>
             </table>
         </div>
-        
+
     }
     else
     {
@@ -130,17 +145,17 @@ else
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash-alt fa-lg"></i> &nbsp; Delete Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash-alt fa-lg"></i> &nbsp; Xóa sản phẩm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                Are you sure you want to delete product @nameForDelete ?
-            </div>
+                Bạn có chắc chắn muốn xóa sản phẩm <span style="color:brown"> @nameForDelete </span> không?
+</div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button @onclick="(()=>deleteProduct(idForDelete))" data-dismiss="modal" type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                <button @onclick="(()=>deleteProduct(idForDelete))" data-dismiss="modal" type="button" class="btn btn-danger">Xóa</button>
             </div>
         </div>
     </div>
@@ -151,7 +166,7 @@ else
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit fa-lg"></i> &nbsp; Edit Product</h5>
+                <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-edit fa-lg"></i> &nbsp; Sửa sản phẩm</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -159,19 +174,19 @@ else
             <div class="modal-body">
                 <EditForm Model="@editProduct">
                     <div class="form-group row">
-                        <label for="newProductName" class="col-sm-2 col-form-label">Product Name</label>
+                        <label for="newProductName" class="col-sm-2 col-form-label">Tên sản phẩm</label>
                         <div class="col-sm-10">
-                            <input @bind="editProduct.name" type="text" class="form-control" id="newProductName" placeholder="Product Name">
+                            <input @bind="editProduct.name" type="text" class="form-control" id="newProductName" placeholder="Sửa tên sản phẩm">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newProductPrice" class="col-sm-2 col-form-label">Price</label>
+                        <label for="newProductPrice" class="col-sm-2 col-form-label">Giá tiền</label>
                         <div class="col-sm-10">
                             <input @bind="editProduct.price" type="number" class="form-control" id="newProductPrice" placeholder="Price">
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label for="newCategoryOfProduct" class="col-sm-2 col-form-label">Category</label>
+                        <label for="newCategoryOfProduct" class="col-sm-2 col-form-label">Danh mục</label>
                         <div class="col-sm-10">
                             <select @bind="@editProduct.productCategoryId" id="newCategoryOfProduct" class="form-control">
                                 <option selected>Choose...</option>
@@ -187,7 +202,7 @@ else
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 col-form-label">Image</label>
+                        <label class="col-sm-2 col-form-label">Hình ảnh</label>
                         <div class="col-sm-10">
                             <InputFile OnChange="@LoadFileForEdit" />
                         </div>
@@ -195,8 +210,8 @@ else
                 </EditForm>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                <button @onclick="(()=>updateProduct())" data-dismiss="modal" type="button" class="btn btn-primary">Save</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                <button @onclick="(()=>updateProduct())" data-dismiss="modal" type="button" class="btn btn-primary">Lưu</button>
             </div>
         </div>
     </div>

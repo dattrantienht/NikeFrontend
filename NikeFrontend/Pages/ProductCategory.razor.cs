@@ -26,6 +26,15 @@ namespace NikeFrontend.Pages
         public ProductCategoryModel productCategory { get; set; }
 
         private ProductCategoryModel newProductCategory = new ProductCategoryModel();
+        private ProductCategoryModel editProductCategory = new ProductCategoryModel();
+        public int idForDeleteCategory { get; set; }
+        public string nameForDeleteCategory { get; set; }
+
+        public void passDataForDeleteModalCategory(int id, string name)
+        {
+            idForDeleteCategory = id;
+            nameForDeleteCategory = name;
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -49,7 +58,7 @@ namespace NikeFrontend.Pages
         public async Task getProductCategory(int id)
         {
             productCategoryResult = await _productCategoryService.getProductCategory(id);
-            productCategory = productCategoryResult.data;
+            editProductCategory = productCategoryResult.data;
         }
 
         public async Task addProductCategory()
@@ -60,7 +69,38 @@ namespace NikeFrontend.Pages
             {
                 await getListProductCategory();
                 newProductCategory = new ProductCategoryModel();
-                _toastService.ShowSuccess("New product added");
+                _toastService.ShowSuccess("New product category added");
+            }
+            else
+            {
+                _toastService.ShowError("There was an error");
+            }
+        }
+
+        public async Task deleteProductCategory(int id)
+        {
+            HttpResponseMessage response = await _productCategoryService.deleteProductCategory(id);
+            Console.WriteLine(response);
+            if (response.IsSuccessStatusCode)
+            {
+                await getListProductCategory();
+                _toastService.ShowSuccess("Product category deleted");
+            }
+            else
+            {
+                _toastService.ShowError("There was an error");
+            }
+        }
+
+        public async Task updateProductCategory()
+        {
+            HttpResponseMessage response = await _productCategoryService.editProductCategory(editProductCategory);
+            Console.WriteLine(response);
+            editProductCategory = new ProductCategoryModel();
+            if (response.IsSuccessStatusCode)
+            {
+                await getListProductCategory();
+                _toastService.ShowSuccess("Product category updated");
             }
             else
             {

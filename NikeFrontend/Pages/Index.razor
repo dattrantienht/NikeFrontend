@@ -6,15 +6,14 @@
 
 <AuthorizeView>
     <Authorized>
-        <h3><b>Welcome @role <span style="color:blue">@user.Identity.Name</span> </b></h3>
-        
+        <h3><b>Xin chào @role <span style="color:blue">@user.Identity.Name</span> </b></h3>
     </Authorized>
+
     <NotAuthorized>
         <h3><b>Welcome Guest</b></h3>
-        
     </NotAuthorized>
 </AuthorizeView>
-
+<br/>
 <CatsFact></CatsFact>
 
 @code{
@@ -48,3 +47,5 @@
     }
 
 }
+<!--==========GOOGLE CALRNDAR=========-->
+<iframe src="https://calendar.google.com/calendar/embed?src=l00g0213gkqll33s1sr8mb3q1s%40group.calendar.google.com&ctz=Asia%2FHo_Chi_Minh" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
