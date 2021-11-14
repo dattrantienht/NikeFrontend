@@ -175,11 +175,11 @@ namespace NikeFrontend.Pages
             if (response.IsSuccessStatusCode)
             {
                 await getListProduct();
-                _toastService.ShowSuccess("Product updated");
+                _toastService.ShowSuccess("Sản phẩm đã được cập nhật");
             }
             else
             {
-                _toastService.ShowError("There was an error");
+                _toastService.ShowError("Xảy ra lỗi!");
             }
         }
 
@@ -196,11 +196,11 @@ namespace NikeFrontend.Pages
             {
                 await getListProduct();
                 newProduct = new ProductModel();
-                _toastService.ShowSuccess("New product added");
+                _toastService.ShowSuccess("Sản phẩm mới được thêm vào");
             }
             else
             {
-                _toastService.ShowError("There was an error");
+                _toastService.ShowError("Xảy ra lỗi!");
             }
         }
 
@@ -211,11 +211,11 @@ namespace NikeFrontend.Pages
             if (response.IsSuccessStatusCode)
             {
                 await getListProduct();
-                _toastService.ShowSuccess("product deleted");
+                _toastService.ShowSuccess("Đã xóa sản phẩm");
             }
             else
             {
-                _toastService.ShowError("There was an error");
+                _toastService.ShowError("Xảy ra lỗi!");
             }
         }
     }
