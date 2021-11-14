@@ -44,9 +44,9 @@
 
 
 <div class="raw bg0 m-t-23 p-b-140">
-    
-    
-        
+
+
+
     <div class="container">
         <!--<div class="flex-w flex-l-m filter-tope-group m-tb-10">
             <button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5 how-active1" data-filter="*">
@@ -64,8 +64,6 @@
             }
 
         </div>-->
-
-
         <!-- Search product -->
         <!--<div class=" panel-search w-full p-t-10 p-b-15">
             <div class="bor8 dis-flex p-l-15">
@@ -76,8 +74,6 @@
                 <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="search-product" placeholder="Search">
             </div>
         </div>-->
-
-
         <!-- Slideshow -->
         <div class="slideshow">
             <div class="slideshow-item">
@@ -106,7 +102,7 @@
             </div>
         </div>
 
-        <div class="flex-w flex-sb-m p-b-52 sidebar" style="padding-left: 20px; 
+        <div class="flex-w flex-sb-m p-b-52 sidebar" style="padding-left: 20px;
        padding-right: 20px; height: 60px; position: sticky; width: auto; margin-right: 0px;
        max-width: 100%; -webkit-box-shadow: none; z-index: 2;">
             @if (listProduct == null)
@@ -142,14 +138,14 @@
 
                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
                     <div class="dropdown">
-                        
-                            <button onclick="myFunction()" class="dropbtn">
-                               
-                                    Sort By
-                                
-                                <span class=" dropbtn oi oi-chevron-bottom"></span>
-                            </button>
-                       
+
+                        <button onclick="myFunction()" class="dropbtn">
+
+                            Sort By
+
+                            <span class=" dropbtn oi oi-chevron-bottom"></span>
+                        </button>
+
 
                         <div id="myDropdown" class="dropdown-content">
                             <a @onclick="(()=>getProductFilter(NameCatergory, 1))">Price: High-Low</a>
@@ -178,7 +174,7 @@
                                 <div class="">
 
                                     <div class="mtext-102 cl2 p-b-15">
-                                        
+
                                         ProductCategory
                                     </div>
                                     <ul>
@@ -187,13 +183,13 @@
                                             foreach (var category in listProductCategory)
                                             {
                                                 <li class="p-b-6">
-                                                    <a @onclick="(()=>getProductFilter(category.name, 0))"   class="filter-link stext-106 trans-04">
+                                                    <a @onclick="(()=>getProductFilter(category.name, 0))" class="filter-link stext-106 trans-04">
 
                                                         @category.name
                                                     </a>
                                                 </li>
 
-                                               
+
                                             }
                                         }
 
@@ -396,12 +392,12 @@
 
                     @if (listProduct == null)
                     {
-                    <p><em>Loading...</em></p>
+                        <p><em>Loading...</em></p>
                     }
                     else
                     {@if (listProduct.Count() == 0)
                         {
-                            
+
                             <h1 style=" padding-left: 100px;">
                                 Nothing here!!!
                             </h1>
@@ -449,7 +445,7 @@
 
     </div>
 
-   
+
 </div>
 
 
@@ -476,10 +472,10 @@
                                                 <div class="wrap-pic-w pos-relative">
                                                     @if (product != null)
                                                     {
-                                                    <div  class="thumbnail">
-                                                        <img src="@product.image" alt="IMG-PRODUCT">
-                                                    </div>
-                                                        
+                                                        <div class="thumbnail">
+                                                            <img src="@product.image" alt="IMG-PRODUCT">
+                                                        </div>
+
                                                     }
                                                 </div>
                                             </div>
@@ -548,6 +544,38 @@
         </div>
     </div>
 </div>
+
+
+<!--Before footer -->
+<div class=" container">
+    <div class="slideshow">
+        <div class="slideshow-item">
+            <img src="img/lebron-19-basketball-shoe-5dpw6F.jpg" />
+            <div class="slideshow-item-text">
+                <h5>Lebron 19 new </h5>
+                <p> Do you want to become second Lebron ?</p>
+
+            </div>
+        </div>
+        <div class="slideshow-item">
+            <img src="img/air-zoom-tempo-next-flyease-easy-on-off-road-running-shoes-40pJSQ.jpg" />
+            <div class="slideshow-item-text">
+                <h5>Air zoom tempo next Flyease</h5>
+                <p> Run with style Why not ?</p>
+
+            </div>
+        </div>
+        <div class="slideshow-item">
+            <img src="img/air-jordan-14-retro-se-shoe-3ldTD8.jpg" />
+            <div class="slideshow-item-text">
+                <h5>Air jordan 14 retro</h5>
+                <p>Old but Gold </p>
+
+            </div>
+        </div>
+    </div>
+</div>
+
 
 <!--Footer-->
 
