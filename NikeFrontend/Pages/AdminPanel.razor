@@ -138,18 +138,18 @@
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash-alt fa-lg"></i> &nbsp; Delete User</h5>
+                        <h5 class="modal-title" id="exampleModalLabel"><i class="fas fa-trash-alt fa-lg"></i> &nbsp; Xóa người dùng</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <!--Thông báo-->
                     <div class="modal-body">
-                        Bạn có chắc chắn muốn xóa người dùng @userNameForDelete không?
-                    </div>
+                        Bạn có chắc chắn muốn xóa người dùng: "<span style="color:brown"> @userNameForDelete </span>" này không?
+</div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                        <button @onclick="(()=>deleteUser(userIdForDelete))" data-dismiss="modal" type="button" class="btn btn-danger">Delete</button>
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy bỏ</button>
+                        <button @onclick="(()=>deleteUser(userIdForDelete))" data-dismiss="modal" type="button" class="btn btn-danger">Xóa</button>
                     </div>
                 </div>
             </div>
