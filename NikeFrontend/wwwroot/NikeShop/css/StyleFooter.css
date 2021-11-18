@@ -225,3 +225,18 @@ footer {
             width: 100%;
         }
 }
+
+.center{
+    position: relative;
+    text-align: center;
+}
+.list{
+    font-size: 25px;
+    font-weight: 100;
+    padding-left: 60px;
+    padding-right: 40px;
+}
+.list li{
+    list-style-position: outside;
+    list-style-type: disc;
+}
